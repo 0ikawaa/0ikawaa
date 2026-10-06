@@ -61,6 +61,7 @@ Mis commits explican **por qué** se hizo el cambio, no qué línea se tocó:
 ---
 
 <div align="center">
+<a href="https://uy.linkedin.com/in/matiasolivieri"><img src="https://img.shields.io/badge/LinkedIn-matiasolivieri-161b22?style=flat-square&logo=linkedin&logoColor=0a66c2&labelColor=0d1117" alt="LinkedIn"></a>
 <a href="mailto:matiasolivieri34@gmail.com"><img src="https://img.shields.io/badge/email-matiasolivieri34@gmail.com-161b22?style=flat-square&logo=gmail&logoColor=e6edf3&labelColor=0d1117" alt="email"></a>
 <img src="https://img.shields.io/badge/Uruguay-161b22?style=flat-square&logo=googlemaps&logoColor=3fb950&labelColor=0d1117" alt="Uruguay">
 </div>

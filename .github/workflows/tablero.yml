@@ -1,0 +1,41 @@
+name: Actualizar tablero del perfil
+
+# Los anos construyendo y el reparto de lenguajes quedan congelados si el SVG
+# no se regenera: sin esto, dentro de un ano seguiria diciendo 4.6 anos.
+on:
+  schedule:
+    - cron: '0 6 1 * *'   # el 1 de cada mes, 06:00 UTC
+  workflow_dispatch:       # y a mano cuando se quiera
+
+permissions:
+  contents: write
+
+jobs:
+  tablero:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Regenerar los SVG
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/generar_tablero.py
+
+      - name: Commitear si cambio algo
+        run: |
+          if git diff --quiet -- profile-dark.svg profile-light.svg; then
+            echo "El tablero no cambio, no hay nada que commitear."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile-dark.svg profile-light.svg
+          git commit -m "Actualizar tablero del perfil
+
+          Regenerado automaticamente: anos construyendo y reparto de lenguajes
+          recalculados desde la API de GitHub."
+          git push
